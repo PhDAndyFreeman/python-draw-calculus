@@ -1,0 +1,32 @@
+import numpy
+import pylab
+import math
+    
+def fn(x) :
+    return numpy.cos(numpy.sqrt(x))
+  
+def f(x) :
+    return 2*(numpy.sqrt(x)*numpy.sin(numpy.sqrt(x))+numpy.cos(numpy.sqrt(x)))-1
+  
+a , b , n= 0 , 2*numpy.pi , 100
+
+xs = numpy.linspace(a,b,n+1)
+
+h = (b-a)/n
+
+ys = [ None ] * (n+1)
+
+ys[0] = f(a)
+for i in range(n) :
+    ys[i+1] = ys[i] + h * fn(xs[i])
+
+
+pylab.plot(xs,ys)
+pylab.plot(xs,f(xs))
+
+pylab.title("y'=cos(sqrt(x)) with y(0)=1")
+
+pylab.xlabel("X")
+pylab.ylabel("Y")
+
+pylab.show()
